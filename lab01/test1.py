@@ -29,7 +29,7 @@ repository.
 
 import os,sys
 
-debug_mode = True
+debug_mode = False
 
 if debug_mode:
     output_file = sys.stdout  # send output to screen
