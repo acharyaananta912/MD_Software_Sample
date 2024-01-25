@@ -1,4 +1,4 @@
-Code run by **insert your name here**
+Code run by **Bibek Acharya**
 Environment variable ISUHPC is /home/bibek/Academics/isu-hpc-spring2024
 Environment variable MYHPC is /home/bibek/Academics/my-hpc
 Imported numpy ok
