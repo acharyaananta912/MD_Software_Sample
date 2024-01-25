@@ -1,0 +1,20 @@
+
+Code run by **insert your name here**
+Environment variable ISUHPC is /home/bibek/Academics/isu-hpc-spring2024
+Environment variable MYHPC is /home/bibek/Academics/my-hpc
+
+which ipython returns...
+
+which gcc returns...
+/usr/bin/gcc
+
+gcc --version returns...
+gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
+Copyright (C) 2021 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+
+Compiling and running a C code...
+Code run by  **insert your name here**
+Successfully ran C program
