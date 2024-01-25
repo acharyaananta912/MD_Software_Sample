@@ -1,0 +1,6 @@
+Code run by **insert your name here**
+Environment variable ISUHPC is /home/bibek/Academics/isu-hpc-spring2024
+Environment variable MYHPC is /home/bibek/Academics/my-hpc
+Imported numpy ok
+Imported matplotlib ok
+Imported pylab ok
