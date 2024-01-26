@@ -1,13 +1,13 @@
 '''
 This file consists two functions:
-1. bin2int (it converts binary to decimal)
-2. int2bin (it converts decimal to binary)
+1. bin2int (it converts binary to integer)
+2. int2bin (it converts integer to binary)
 '''
 def bin2int(bin_string):
 
     '''
     This function takes 16-bit binary number in Two's Complement representation 
-    as a string and converts it to a decimal number using the following formula:
+    as a string and converts it to a integer number using the following formula:
     -a*2^15 + sum(a_i*2^(i)), i ranges from 0-14 and a_i is the ith element of the binary number.
     For example, if the input is "1111111100000010", the output is -254, which follows the following steps:
     ______________________________________________________________________________________________
