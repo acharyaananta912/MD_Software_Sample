@@ -11,7 +11,9 @@ def sqrt_secant(x, s=1, t=1, kmax=10, printshow=False):
     for k in range(kmax):
         if printshow:
             print("Before iteration %s, s=%20.15f" % (k,s))
+        tmp = s
         s = (x + s*t)/(s + t)
+        t = tmp
     return s
 
 if __name__ == "__main__":
