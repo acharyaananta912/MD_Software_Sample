@@ -1,4 +1,4 @@
-def sqrt(x,s=1.0,kmax=10,printshow=False):
+def sqrt_newton(x,s=1.0,kmax=10,printshow=False):
 
     for k in range(kmax):
         if printshow:
@@ -6,7 +6,7 @@ def sqrt(x,s=1.0,kmax=10,printshow=False):
         s = 0.5*(s + x/s);
     return s
 
-def sqrt_secant(x, s=1, t=1, kmax=10, printshow=True):
+def sqrt_secant(x, s=1, t=1, kmax=10, printshow=False):
 
     for k in range(kmax):
         if printshow:
@@ -17,7 +17,7 @@ def sqrt_secant(x, s=1, t=1, kmax=10, printshow=True):
 if __name__ == "__main__":
     
     print("Using Newton Square Root Method:")
-    s = sqrt(15,4,10,True);
+    s = sqrt_newton(15,4,10,True);
 
     print("Using Secant Square Root Method:")
 
