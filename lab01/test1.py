@@ -38,7 +38,7 @@ else:
     output_file = open("test1output.txt","w")
     sys.stdout = output_file
 
-print ("Code run by **insert your name here**")
+print ("Code run by **Bibek Acharya**")
 
 ISUHPC = os.environ.get('ISUHPC','** not set **')
 print ("Environment variable ISUHPC is %s"  % ISUHPC)
