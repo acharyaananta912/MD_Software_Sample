@@ -113,74 +113,58 @@ def int2bin(x):
     return bin_string
 
 
-def add2bins(bin1, bin2):
+def bin2add(bin1, bin2):
+    """
+    Adds two binary numbers represented as strings.
 
-    '''
-    This function adds two binary numbers
-        _________________________________________________________________
-        | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | = bin1 = "1111111100000000"
-       +| 0 | 0 | 0 | 1 | 0 | 0 | 1 | 1 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | = bin2 = "0001001110001000"
-        | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |     = tmp
-    ---------------------------------------------------------------------
-    | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 1 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | = bin_out = "10001001010001000"
-    ---------------------------------------------------------------------
-    '''
-    
-    # making sure input is a string, and it consists only 0s and 1s
-    assert(type(bin1)==str and type(bin2)==str)
-    assert all(char == "0" or char == "1" for char in bin1)
-    assert all(char == "0" or char == "1" for char in bin2)
+    Parameters:
+    - bin1 (str): The first binary number.
+    - bin2 (str): The second binary number.
 
-    # making both strings of equal length by adding 0s to the beginning of the shorter string
-    # adding 1 extra 0 to the beginning of the longer string to avoid index out of range error
-    longer_string = bin1 if len(bin1) > len(bin2) else bin2
-    shorter_string = bin2 if len(bin1) > len(bin2) else bin1
-    shorter_string = "0" * (len(longer_string) - len(shorter_string)+1) + shorter_string
-    longer_string = "0"+longer_string
+    Returns:
+    - str: The sum of the two binary numbers.
 
-    # initializing an empty list and a temporary variable
-    # bin_out is the output binary number
-    # tmp is the carry over digit
+    Description:
+    This function takes two binary numbers as input and performs binary addition digit by digit.
+    It starts from the right and moves towards the left.
+    The carry is initialized to 0.
+    For each bit position, the function calculates the sum of the corresponding bits of bin1, bin2, and the carry.
+    If the sum is 0, the output bit is 0 and the carry is set to 0.
+    If the sum is 1, the output bit is 1 and the carry is set to 0.
+    If the sum is 2, the output bit is 0 and the carry is set to 1.
+    If the sum is 3, the output bit is 1 and the carry is set to 1.
+    Finally, the output bits are reversed and joined to form the sum of the two binary numbers.
+    """
+
+    # Checks if each inputs have 16-digits, checks if elements of the strings are "0"s or "1"s
+    assert(len(bin1)==16 and len(bin2)==16)
+    assert(all(x in ['0','1'] for x in bin1))
+    assert(all(x in ['0','1'] for x in bin2))
+
     bin_out = []
-    tmp = "0"
+    carry = 0
 
-    # iterating over the binary numbers from right to left
-    # if the sum of two digits is 2, then the output digit is 0 and tmp is set to 1
-    # if the sum of two digits is 3, then the output digit is 1 and tmp is set to 1
-    # if the sum of two digits is 1, then the output digit is 1 and tmp is set to 0
-    # if the sum of two digits is 0, then the output digit is 0 and tmp is set to 0
-    for i in range(len(shorter_string)-1,-1,-1):
-        if longer_string[i] == "1":
-            if shorter_string[i] == "1":
-                if tmp == "1":
-                    bin_out.append("1")
-                else:
-                    bin_out.append("0")
-                    tmp = "1"
-            else:
-                if tmp == "1":
-                    bin_out.append("0")
-                else:
-                    bin_out.append("1")
-                
-        else:
-            if shorter_string[i] == "1":
-                if tmp == "1":
-                    bin_out.append("0")
-                else:
-                    bin_out.append("1")
-                    tmp = "0"
-            else:
-                if tmp == "1":
-                    bin_out.append("1")
-                    tmp = "0"
-                else:
-                    bin_out.append("0")
+    # Perform binary addition digit by digit
+    for i in range(15, -1, -1):
+        total_sum = int(bin1[i]) + int(bin2[i]) + carry
 
-    # reversing the list and joining the elements to make a string
-    bin_out = bin_out[::-1]
+        if total_sum == 0:
+            bin_out.append("0")
+            carry = 0
+        elif total_sum == 1:
+            bin_out.append("1")
+            carry = 0
+        elif total_sum == 2:
+            carry = 1
+            bin_out.append("0")
+        elif total_sum == 3:
+            carry = 1
+            bin_out.append("1")
+    
+
+    # Reverse the output bits and join them to form the sum
     bin_out = "".join(bin_out)
-    return bin_out
+    return bin_out[::-1]
 
 if __name__ == "__main__":
 
