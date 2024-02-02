@@ -113,8 +113,11 @@ def int2bin(x):
     return bin_string
 
 
-def bin2add(bin1, bin2):
+def add2bins(bin1, bin2):
     """
+
+    This function only works within summation limits of 16-bit binary numbers,
+    if sum is below or above the limit, it will generate wrong output.
     Adds two binary numbers represented as strings.
 
     Parameters:
@@ -137,9 +140,11 @@ def bin2add(bin1, bin2):
     """
 
     # Checks if each inputs have 16-digits, checks if elements of the strings are "0"s or "1"s
-    assert(len(bin1)==16 and len(bin2)==16)
+    assert(type(bin1) == str and type(bin2) == str)
     assert(all(x in ['0','1'] for x in bin1))
     assert(all(x in ['0','1'] for x in bin2))
+    assert(len(bin1)==16 and len(bin2)==16)
+    
 
     bin_out = []
     carry = 0
@@ -216,23 +221,23 @@ if __name__ == "__main__":
     print("32767  = ",int2bin(32767))
 
     print("\n\nTesting add2bins function:")
+    
     try:
-        bin_out = add2bins("hello", "110110")
+        bin_out = add2bins(1111100000000000, 1111100000000000)
     except AssertionError:
-        print("Input Error: ('hello','110110') doesn't satisfy input requirement.")
-
+        print("Input Error: 1111100000000000 is not a string.")
     try:
-        bin_out = add2bins(12345, 54321)
+        bin_out = add2bins("1234500000000000", "1234500000000000")
     except AssertionError:
-        print("Input Error: (12345, 54321) doesn't satisfy input requirement.")
-
+        print("Input Error: '1234500000000000' is not a binary.")
     try:
-        bin_out = add2bins("10010", 54321)
+        bin_out = add2bins('111111110000000','1001110001000110')
     except AssertionError:
-        print("Input Error: (12345, 54321) doesn't satisfy input requirement.")
+        print("Input Error: '111111110000000' does not have 16 digits.")
 
-    print("\nAdding ('1111111100000000','1001110001000'): ", add2bins('1111111100000000','1001110001000'))
-    print("Adding ('1111011000','101111011'): ", add2bins('1111011000','101111011'))
-    print("Adding ('1111111111111111','1111111111111111'): ", add2bins('1111111111111111','1111111111111111'))
+
+    print("\nAdding ('1111111100000000','1001110001000110'): ", add2bins('1111111100000000','1001110001000110'))
+    print("Adding ('1111011110000000','1000011110111110'): ", add2bins('1111011110000000','1000011110111110'))
+    print("Adding ('1111111111111111','0000000000000001'): ", add2bins('1111111111111111','0000000000000001'))
 
 
