@@ -1,6 +1,8 @@
 import numpy as np
 def LUfactor(A):
-    
+    '''
+    This function uses gauss elimination method to find 
+    '''
     n = A.shape[0]
     U = A.copy()
     L = np.eye(n,n)
