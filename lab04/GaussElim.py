@@ -1,13 +1,22 @@
 import numpy as np
 def LUfactor(A):
     '''
-    This function uses gauss elimination method to find 
+    This function uses gauss elimination method to find LU factorization of a matrix A
+    Input: A - a square matrix
+    Output: L - Lower triangular matrix
+            U - Upper triangular matrix
+            A = LU
     '''
-    n = A.shape[0]
-    U = A.copy()
+    assert A.shape[0] == A.shape[1], "Matrix A must be a square matrix"
+    # size of the matrix, n x n
+    n = A.shape[0] 
+    # Gaussian elimination involves dividing the elements of a row by the diagonal element.
+    # Convert the matrix to float to avoid integer division
+    U = (A.copy()).astype(float) 
     L = np.eye(n,n)
 
     for k in range(n-1):
+        assert(U[k][k] != 0), "Pivot element is zero. LU factorization is not possible"
         for j in range(k+1, n):
             L[j][k] = U[j][k]/U[k][k]
             for i in range(k,n):
