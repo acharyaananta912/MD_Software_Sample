@@ -33,7 +33,7 @@ def plot(x=0, y=0, a=0, infile=""):
     plt.plot(x, y, 'o', label='Data', color='blue', markersize=8, alpha=0.7)
 
     # Plot the quadratic function
-    plt.plot(x, yfit, '-', label='Quadratic Fit', color='red', linewidth=2)
+    plt.plot(x, yfit, '-', label='Fitted Data', color='red', linewidth=2)
 
     # Customize plot
     plt.title(infile[:-4] + ": Data and Least Squares Fit w/Quad. Poly.", fontsize=16)
