@@ -9,7 +9,7 @@ void get_prime_factors(int n,int prime_list[],int* num_primes)
 
 	/*This function does following operations:
 	 * initialize a num_prime as 0. This is a position holder.
-	 * Takes the denominater of the fraction as "n".
+	 * Takes the denominater or numerator of the fraction as "n".
 	 * "n" is divided by 2. It continiously divides and updates "n"
 	 * for example: "n" = 8, *num_prime = 3, prime_list = [2,2,2], "n" =1 
 	 * Then "n" is divided by 3 upto the point when it is no more divisble.
