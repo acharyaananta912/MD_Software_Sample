@@ -1,0 +1,1 @@
+Time taken for matrix-vector multiplication: 0.013789 seconds with 8 threads
