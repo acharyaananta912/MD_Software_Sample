@@ -1,0 +1,2 @@
+gcc -Wall -Wextra -std=c99 -O3 -fopenmp -c -o simpson.o simpson.c
+gcc -Wall -Wextra -std=c99 -O3 -fopenmp -o simpson.exe simpson.o -lm -fopenmp
