@@ -39,7 +39,7 @@ int main(int argc, char **argv) {
         printf("N,cpu-time, pi_estimate, relative error\n");
     }
 
-    for (int i = 10; i <= 20000; i += 1000) {
+    for (int i = 20; i <= 20000; i += 1000) {
         double start_time, end_time;
         double elapsed_time;
 
