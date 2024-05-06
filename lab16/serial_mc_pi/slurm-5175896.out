@@ -1,0 +1,2 @@
+gcc -Wall -o serial_mc_pi.exe serial_mc_pi.c -lm
+/var/spool/slurmd/job5175896/slurm_script: line 16: /home/acharyab: Is a directory

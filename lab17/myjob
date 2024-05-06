@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Copy/paste this job script into a text file and submit with the command:
+#    sbatch thefilename
+
+#SBATCH --time=00:10:00   # walltime limit (HH:MM:SS)
+#SBATCH --nodes=1   # number of nodes
+#SBATCH --ntasks-per-node=36   # 36 processor core(s) per node
+#SBATCH --job-name="LAB17"
+#SBATCH --mail-user=acharyab@iastate.edu   # email address
+
+# LOAD MODULES, INSERT CODE, AND RUN YOUR PROGRAMS HERE
+
+module purge
+module load openmpi
+make
+
+
+for i in 01 02 04 08 16; do
+        mpirun -np $i main > output${i}.txt
+done
+~    
