@@ -9,7 +9,7 @@ from generate_dumpfile import generate_coordinates
 
 # parameters
 
-no_of_atoms = 333
+no_of_atoms = 33
 dimension = 3
 len_each_dimension = 50.0 								# in Angstorm
 boundary_condition = 1 					# Reflection
