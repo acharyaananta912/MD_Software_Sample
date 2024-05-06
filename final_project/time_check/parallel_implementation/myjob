@@ -1,8 +1,0 @@
-#!/bin/bash
-
-
-#SBATCH --time=00:01:00   # walltime limit (HH:MM:SS)                  #SBATCH --nodes=1   # number of nodes
-#SBATCH --ntasks-per-node=36   # 36 processor core(s) per node
-#SBATCH --job-name="final_project"                                                                                                            # LOAD MODULES, INSERT CODE, AND RUN YOUR PROGRAMS HERE
-
-module purge                                                           python3 runme.py > parallel_time.txt 
