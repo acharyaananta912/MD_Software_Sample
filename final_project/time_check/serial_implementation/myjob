@@ -1,8 +1,20 @@
 #!/bin/bash
 
+# Copy/paste this job script into a text file and submit with the command:
+#    sbatch thefilename
 
-#SBATCH --time=00:01:00   # walltime limit (HH:MM:SS)                  #SBATCH --nodes=1   # number of nodes
+#SBATCH --time=04:00:00   # walltime limit (HH:MM:SS)
+#SBATCH --nodes=1   # number of nodes
 #SBATCH --ntasks-per-node=36   # 36 processor core(s) per node
-#SBATCH --job-name="final_project"                                                                                                            # LOAD MODULES, INSERT CODE, AND RUN YOUR PROGRAMS HERE
+#SBATCH --job-name="serialtime"
+#SBATCH --mail-user=acharyab@iastate.edu   # email address
+#SBATCH --mail-type=BEGIN
+#SBATCH --mail-type=END
+#SBATCH --mail-type=FAIL
+#SBATCH --output="serialtime.out" # job standard output file (%j replaced by job id)
+#SBATCH --error="serialtime.err" # job standard error file (%j replaced by job id)
 
-module purge                                                           python3 runme.py > serial_time.txt 
+# LOAD MODULES, INSERT CODE, AND RUN YOUR PROGRAMS HERE
+
+module purge
+python3 runme.py
