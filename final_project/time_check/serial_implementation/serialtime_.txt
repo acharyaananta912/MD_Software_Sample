@@ -1,0 +1,12 @@
+Varied atoms with fixed box length and simulation time
+No of atoms, box length (nm), frames, simulation time (ps), cpu-time (s)
+33 20 150 0.3 14.08811068534851
+66 20 150 0.3 35.459354400634766
+99 20 150 0.3 63.953516483306885
+
+
+fixed atoms varied simulation time
+No of atoms, box length (nm), frames, simulation time (ps), cpu-time (s)
+99 50 500 1.0 210.85431098937988
+99 50 1000 2.0 424.6619973182678
+99 50 1500 3.0 655.6499602794647
