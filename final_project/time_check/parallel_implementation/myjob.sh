@@ -17,4 +17,4 @@
 # LOAD MODULES, INSERT CODE, AND RUN YOUR PROGRAMS HERE
 
 module purge
-python3 runme.py
+python3 runme.py > paralleltime.txt
