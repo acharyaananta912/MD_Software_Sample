@@ -5,4 +5,5 @@ The implementation folder consists of a sample MD Simulation with series and par
 Time check folder consists of various simulations with varied atomic numbers, simulation box size and simulation time.
 -------------------------------------
 python3 mdrun.py (to run code in implementation folder
+
 python3 runme.py (to run code in time check folder
