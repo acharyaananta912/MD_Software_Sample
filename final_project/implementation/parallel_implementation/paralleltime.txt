@@ -148,4 +148,4 @@ Frame:  146
 Frame:  147
 Frame:  148
 Frame:  149
-Time taken for simulation:  21.637160062789917  seconds
+Time taken for simulation:  7.845743894577026  seconds

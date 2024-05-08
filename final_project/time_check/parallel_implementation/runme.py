@@ -1,10 +1,12 @@
 from mdrun import mdrun
 
+num_threads = 4
+
 print("Varied atoms with fixed box length and simulation time")
 print("No of atoms, box length (nm), frames, simulation time (ps), cpu-time (s)")
-mdrun(33, 20, 150)
-mdrun(66, 20, 150)
-mdrun(99, 20, 150)
+mdrun(33, 20, 150,)
+mdrun(66, 20, 150,)
+mdrun(99, 20, 150,)
 print("\n")
 
 

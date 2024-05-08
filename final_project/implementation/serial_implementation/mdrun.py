@@ -9,7 +9,7 @@ from generate_dumpfile import generate_coordinates
 
 # parameters
 
-no_of_atoms = 33
+no_of_atoms = 66
 dimension = 3
 len_each_dimension = 50.0 								# in Angstorm
 boundary_condition = 1 					# Reflection
@@ -93,7 +93,7 @@ atomic_charge = np.array([partial_charge[1] if atom == 1 else partial_charge[0] 
 ************************************************************************'''
 
 skip = 20
-frames = 150
+frames = 200
 STEPS = skip * frames
 start_time = time.time()
 for i in range(STEPS):
