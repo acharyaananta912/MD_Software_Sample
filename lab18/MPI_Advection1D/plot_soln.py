@@ -5,7 +5,7 @@ def plot_soln(create_png=False):
     import matplotlib.pyplot as plt
     import numpy as np
     matplotlib.rcParams.update({'font.size': 16, 'font.family': 'sans-serif'});
-    matplotlib.rcParams.update({'text.usetex': 'true'});
+    #matplotlib.rcParams.update({'text.usetex': 'true'});
 
     # figure out how many processors were used
     fid = open('num_processors.data');
@@ -25,7 +25,7 @@ def plot_soln(create_png=False):
 
     x   = np.zeros((mx,num_proc,11),dtype=float)
     U   = np.zeros((mx,num_proc,11),dtype=float)
-    V  =  np.zeros((mx, num_proc, 11), dtype = float)
+    V   = np.zeros((mx, num_proc, 11), dtype = float)
     time = np.zeros(11,dtype=float);
 
     z = ['ro','g^','ro','g^','ro','g^','ro','g^','ro','g^','ro','g^','ro','g^','ro','g^'];
@@ -44,10 +44,12 @@ def plot_soln(create_png=False):
                 linelist      = linestring.split()
                 x[k,NumProc,NumFrame] = np.float64(linelist[0])
                 U[k,NumProc,NumFrame] = np.float64(linelist[1])
+                V[k,NumProc,NumFrame] = np.float64(linelist[2])
             fid.close()
 
     # exact solution
     Uex = np.zeros((mx*num_proc,11),dtype=float)
+    Vex = np.zeros((mx*num_proc,11),dtype=float)
     xex = np.zeros((mx*num_proc,11),dtype=float)
     tmp_index=0
     for NumProc in range(0,num_proc):
@@ -55,12 +57,14 @@ def plot_soln(create_png=False):
             for NumFrame in range(0,11):
                 xex[tmp_index,NumFrame] =  x[k,NumProc,NumFrame]
                 Uex[tmp_index,NumFrame] =  func(x[k,NumProc,NumFrame],time[NumFrame])
+                Vex[tmp_index,NumFrame] =  func(x[k,NumProc,NumFrame],time[NumFrame])
             tmp_index = tmp_index+1
 
     # plot the result
     plt.rc("font", size=16);
     for NumFrame in range(0,11):
         plt.figure(NumFrame)
+        plt.subplot(2,1,1)
         plt.grid()
         plt.plot(xex[:,NumFrame],Uex[:,NumFrame],'b-',linewidth=1);
 
@@ -71,12 +75,28 @@ def plot_soln(create_png=False):
         plt.title(title);
         plt.xlim(0.0,1.0)
         plt.xticks([0.0,0.25,0.5,0.75,1.0])
+        
+        plt.ylim(-0.1,1.1)
+        plt.yticks([0.0,0.25,0.5,0.75,1.0])
+        plt.ylabel('U')
+   
+        plt.subplot(2,1,2)
+        plt.grid()
+
+        for NumProc in range(0,num_proc):
+            plt.plot(x[:,NumProc,NumFrame],V[:,NumProc,NumFrame],z[NumProc],markersize=4);
+
+
+        plt.xlim(0.0,1.0)
+        plt.xticks([0.0,0.25,0.5,0.75,1.0])
 
         plt.ylim(-0.1,1.1)
         plt.yticks([0.0,0.25,0.5,0.75,1.0])
+        plt.xlabel('x')
+        plt.ylabel('V')
         if(create_png):
             plt.savefig('advection'+str(NumFrame)+'.png', dpi=400, bbox_inches='tight')
-
+        
     plt.show()
 
 def func(x,time):
@@ -89,4 +109,4 @@ def func(x,time):
     return f
 
 if __name__ == "__main__":
-    plot_soln(True);
+    plot_soln(True)
