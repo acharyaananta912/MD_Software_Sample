@@ -8,7 +8,7 @@
 #SBATCH --nodes=1   # number of nodes
 #SBATCH --ntasks-per-node=16       # number of cores
 #SBATCH --partition=instruction    # class node(s)
-#SBATCH --account=class-faculty    # account to use
+#SBATCH --account=s2024.math.525.1    # account to use
 
 # LOAD MODULES, INSERT CODE, AND RUN YOUR PROGRAMS HERE
 module purge
