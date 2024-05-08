@@ -16,6 +16,8 @@ int main(int argc, char* argv[])
                  const double time,
                  const char* filename);
   double func(const double x);
+
+
   void send_boundary_data(const int my_rank,
                           const int comm_sz,
                           const double U1,
@@ -80,6 +82,7 @@ int main(int argc, char* argv[])
   strcat(filename, ".data");
   WriteSoln(my_rank,&x,&U,&V,time,filename);
 
+
   // Get time
   double time_start = 0.0;
   if (my_rank==0)
@@ -106,12 +109,11 @@ int main(int argc, char* argv[])
                          vget(U,1),vget(U,N_local));
       send_boundary_data(my_rank,comm_sz,
                          vget(V,1),vget(V,N_local));
-      double ULBC,URBC;
-      double VLBC,VRBC;
+      double ULBC,URBC,VLBC,VRBC;
       receive_boundary_data(my_rank,comm_sz,
                             vget(U,N_local),vget(U,1),
                             &ULBC,&URBC);
-      receive_boundary_data(my_rank,comm_sz, 
+      receive_boundary_data(my_rank,comm_sz,
                             vget(V,N_local),vget(V,1),
                             &VLBC,&VRBC);
 
@@ -119,22 +121,23 @@ int main(int argc, char* argv[])
       time += dt;
       vget(Unew,1) = vget(U,1) - 0.5*nu*(vget(U,2)-ULBC)
                    + 0.5*nu2*(vget(U,2)-2.0*vget(U,1)+ULBC);
-      vget(Vnew,1) = vget(V,1) - 0.5*nu*(vget(V,2)-VLBC)
-                    + 0.5*nu2*(vget(V,2)-2.0*vget(V,1)+VLBC);
+      vget(Vnew,1) = vget(V,1) + 0.5*nu*(vget(V,2)-VLBC)
+                   + 0.5*nu2*(vget(V,2)-2.0*vget(V,1)+VLBC);
       for (int i=2; i<N_local; i++)
         {
           vget(Unew,i) = vget(U,i) - 0.5*nu*(vget(U,i+1)-vget(U,i-1))
                        + 0.5*nu2*(vget(U,i+1)-2.0*vget(U,i)+vget(U,i-1));
-          vget(Vnew,i) = vget(V,i) - 0.5*nu*(vget(V,i+1)-vget(V,i-1))
-                        + 0.5*nu2*(vget(V,i+1)-2.0*vget(V,i)+vget(V,i-1));
+          vget(Vnew,i) = vget(V,i) + 0.5*nu*(vget(V,i+1)-vget(V,i-1))
+                       + 0.5*nu2*(vget(V,i+1)-2.0*vget(V,i)+vget(V,i-1));
         }
       vget(Unew,N_local) = vget(U,N_local) - 0.5*nu*(URBC-vget(U,N_local-1))
                          + 0.5*nu2*(URBC-2.0*vget(U,N_local)+vget(U,N_local-1));
-      vget(Vnew,N_local) = vget(V,N_local) - 0.5*nu*(VRBC-vget(V,N_local-1))  
+      vget(Vnew,N_local) = vget(V,N_local) + 0.5*nu*(VRBC-vget(V,N_local-1))
                          + 0.5*nu2*(VRBC-2.0*vget(V,N_local)+vget(V,N_local-1));
 
       // reset for next step
       copy_vector(&Unew,&U);
+      copy_vector(&Vnew,&V);
       }
 
       // Print final guess to a file
@@ -159,8 +162,9 @@ int main(int argc, char* argv[])
   // Free up memory
   delete_vector(&Unew);
   delete_vector(&Vnew);
+
   delete_vector(&U);
-  delete_vector(&Vnew);
+  delete_vector(&V);
   delete_vector(&x);
 
   // End program
@@ -206,7 +210,7 @@ void usage(const char *prog_name)
 void WriteSoln(const int my_rank,
                const vector* x,
                const vector* U,
-                const vector* V,
+               const vector* V,
                const double time,
                const char* filename)
 {
@@ -219,11 +223,10 @@ void WriteSoln(const int my_rank,
       const double xtmp = vgetp(x,i);
       const double Utmp = vgetp(U,i);
       const double Vtmp = vgetp(V,i);
-      fprintf(file,"%24.15e %24.15e\n",xtmp,Utmp);
+      fprintf(file,"%24.15e %24.15e %24.15e\n",xtmp,Utmp,Vtmp);
     }
   fclose(file);
 }
-
 void send_boundary_data(const int my_rank,
                         const int comm_sz,
                         const double U1,
@@ -297,7 +300,6 @@ void receive_boundary_data(const int my_rank,
         }
     }
 }
-
 double func(const double x)
 {
   return exp(-400.0*pow(x-0.5,2));
