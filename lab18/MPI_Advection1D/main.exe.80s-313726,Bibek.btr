@@ -1,0 +1,13 @@
+
+main.exe:313726 terminated with signal 6 at PC=7f6b0dc179fc SP=7fff64ad26e0.  Backtrace:
+/lib/x86_64-linux-gnu/libc.so.6(pthread_kill+0x12c)[0x7f6b0dc179fc]
+/lib/x86_64-linux-gnu/libc.so.6(raise+0x16)[0x7f6b0dbc3476]
+/lib/x86_64-linux-gnu/libc.so.6(abort+0xd3)[0x7f6b0dba97f3]
+/lib/x86_64-linux-gnu/libc.so.6(+0x89676)[0x7f6b0dc0a676]
+/lib/x86_64-linux-gnu/libc.so.6(+0xa0cfc)[0x7f6b0dc21cfc]
+/lib/x86_64-linux-gnu/libc.so.6(+0xa30ab)[0x7f6b0dc240ab]
+/lib/x86_64-linux-gnu/libc.so.6(free+0x73)[0x7f6b0dc26453]
+./main.exe(+0x1d98)[0x558252896d98]
+/lib/x86_64-linux-gnu/libc.so.6(+0x29d90)[0x7f6b0dbaad90]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x80)[0x7f6b0dbaae40]
+./main.exe(+0x1f35)[0x558252896f35]
