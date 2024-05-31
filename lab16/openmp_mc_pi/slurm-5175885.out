@@ -1,1 +1,0 @@
-gcc -Wall -o openmp_mc_pi.exe openmp_mc_pi.c -lm -fopenmp
