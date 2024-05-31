@@ -1,3 +1,0 @@
-gcc -Wall -fopenmp -lm -c matrix.c
-gcc -Wall -fopenmp -lm -c main.c
-gcc -Wall -fopenmp -lm -lgomp matrix.o main.o -o main.exe
